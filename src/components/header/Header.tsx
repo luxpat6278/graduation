@@ -1,6 +1,6 @@
 // src/components/Header.tsx
 import React, { useState } from 'react';
-import "./header.css";
+import "./Header.css";
 
 const Header: React.FC = () => {
     const [loaded, setLoaded] = useState(false);
