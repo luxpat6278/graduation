@@ -14,7 +14,7 @@ const RSVPForm: React.FC = () => {
     if (!name || !email || !attendance) return;
 
     try {
-      const response = await fetch('http://localhost:3000/api/rsvp', {
+      const response = await fetch('https://gb.onrender.com/api/rsvp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
