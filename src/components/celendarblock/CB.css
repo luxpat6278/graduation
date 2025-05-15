@@ -1,0 +1,68 @@
+/* src/components/calendarblock/CB.css */
+
+.calendar-block {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+  color: #f0e6d2;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(4px);
+}
+
+.date-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+  color: #f9c34b;
+}
+
+.calendar {
+  display: grid;
+  gap: 8px;
+}
+
+.calendar-header,
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.day-name {
+  font-weight: bold;
+  color: #f9c34b;
+}
+
+.date-cell {
+  padding: 10px 0;
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.date-cell.highlight {
+  background-color: #f9c34b;
+  color: #111;
+  font-weight: bold;
+}
+
+.add-calendar-button {
+  margin-top: 24px;
+}
+
+.add-calendar-button a {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #C6930A;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.add-calendar-button a:hover {
+  background-color: #a57608;
+}

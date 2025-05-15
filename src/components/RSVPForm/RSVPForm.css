@@ -1,0 +1,84 @@
+/* Общий контейнер, стилизован как блок приглашения */
+.rsvp-form {
+  text-align: center;
+  margin: 40px auto;
+  padding: 20px;
+  max-width: 600px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  color: #ff9c9c;
+  font-size: 18px;
+  line-height: 1.6;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+
+}
+
+/* Заголовок */
+.rsvp-form h3 {
+  margin-bottom: 20px;
+}
+
+/* Поле ввода */
+.rsvp-form input[type="text"] {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 20px;
+  background-color: rgb(255, 255, 255);
+  color: #000000d4;
+}
+
+/* Группа радио-кнопок */
+.radio-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+/* Каждая радио-кнопка и подпись — в одну строку */
+.radio-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #C6930A; /* цвет кнопки */
+  font-weight: bold;
+}
+
+/* Сами радио-кнопки — в цвет текста */
+.radio-group input[type="radio"] {
+  accent-color: #ff9c9c; /* цвет текста (основной) */
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+/* Кнопка отправки */
+.rsvp-form button {
+  background-color: #C6930A;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.rsvp-form button:hover {
+  background-color: #a57608;
+}
+
+.rsvp-form input[type="email"] {
+  width: 90%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 20px;
+  background-color: rgb(255, 255, 255);
+  color: #fff;
+}

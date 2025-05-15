@@ -1,0 +1,53 @@
+/* src/components/header/Header.css */
+
+
+
+.header-container {
+  position: relative;
+  width: 100%;                  /* контейнер растягивается на всю ширину */
+  max-width: 800px;             /* ограничение максимальной ширины */
+  margin: 0 auto;               /* центрирование контейнера */
+}
+
+.header-photo {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;            /* обрезает фото, сохраняя пропорции */
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.header-photo.loaded {
+  opacity: 1;
+}
+
+.header-text {
+  position: absolute;
+  top: 68%;                  /* опускаем текст внутрь фото */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: clamp(1.5rem, 5vw, 3rem); /* адаптивный размер текста */
+  color: #C6930A;
+  margin: 0;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+/* Мобильная адаптация */
+@media (max-width: 768px) {
+
+  .header-text {
+    bottom: 5%;
+    font-size: clamp(1rem, 6vw, 2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .header-text {
+    bottom: 2%;
+    font-size: clamp(0.9rem, 8vw, 1.5rem);
+  }
+}

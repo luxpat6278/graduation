@@ -1,0 +1,68 @@
+/* src/components/CountdownTimerFullWidth/CountdownTimerFullWidth.css */
+
+/* Глобальная защита от ненужного скролла */
+html,
+body {
+  box-sizing: border-box;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Блок на всю ширину экрана, но без проблем со скроллом */
+.full-width-bg {
+  position: relative;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-height: 400px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+/* Полупрозрачная красная накладка */
+.countdown-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(191, 55, 55, 0.42);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Содержимое таймера */
+.countdown-content {
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+
+.countdown-content h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.countdown-numbers {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.countdown-numbers div {
+  text-align: center;
+  min-width: 70px;
+}
+
+.countdown-numbers span {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.countdown-numbers small {
+  font-size: 14px;
+  margin-top: 4px;
+  text-transform: uppercase;
+}
