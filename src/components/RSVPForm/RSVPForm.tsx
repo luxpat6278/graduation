@@ -1,93 +1,80 @@
-// src/components/RSVPForm/RSVPForm.tsx
 import React, { useState } from 'react';
 import './RSVPForm.css';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
+type Attendance = 'yes' | 'no';
+
 const RSVPForm: React.FC = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [attendance, setAttendance] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [attendance, setAttendance] = useState<Attendance | ''>('');
+  const [submitted, setSubmitted] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    if (!name || !email || !attendance) return;
-
+    setError(null);
+    if (!name || !email || !attendance) {
+      setError('Пожалуйста, заполните все поля.');
+      return;
+    }
     try {
-      const response = await fetch('https://gb.onrender.com/api/rsvp', {
+      const res = await fetch(`${API_URL}/rsvp`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          attendance
-        })
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ name, email, attendance }),
       });
-
-      if (response.ok) {
-        setSubmitted(true);
-      } else {
-        console.error('Ошибка при отправке RSVP');
-      }
-    } catch (err) {
-      console.error('Ошибка сети:', err);
+      const body = await res.json();
+      if (res.ok) setSubmitted(true);
+      else setError(body.error || 'Ошибка отправки');
+    } catch (err: any) {
+      setError('Сетевая ошибка.');
     }
   };
 
+  if (submitted) return <p>Спасибо за ваш ответ!</p>;
   return (
-    <div className="rsvp-form">
-      {submitted ? (
-        <p>Спасибо за ваш ответ!</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          <h3>Просим подтвердить ваше участие в праздничном мероприятии.</h3>
-
+    <form onSubmit={handleSubmit} className="rsvp-form">
+      <h3>Пожалуйста, подтвердите участие</h3>
+      {error && <div className="error">{error}</div>}
+      <input
+        type="text"
+        placeholder="Имя"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <div className="radio-group">
+        <label>
           <input
-            type="text"
-            placeholder="Ваше имя"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
+            type="radio"
+            name="attendance"
+            value="yes"
+            checked={attendance === 'yes'}
+            onChange={() => setAttendance('yes')}
           />
-
+          Да
+        </label>
+        <label>
           <input
-            type="email"
-            placeholder="Ваш Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
+            type="radio"
+            name="attendance"
+            value="no"
+            checked={attendance === 'no'}
+            onChange={() => setAttendance('no')}
           />
-
-          <div className="radio-group">
-            <label>
-              <input
-                type="radio"
-                name="attendance"
-                value="yes"
-                checked={attendance === 'yes'}
-                onChange={(e) => setAttendance(e.target.value)}
-              />
-              Да, конечно
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="attendance"
-                value="no"
-                checked={attendance === 'no'}
-                onChange={(e) => setAttendance(e.target.value)}
-              />
-              Нет, не смогу
-            </label>
-          </div>
-
-          <button type="submit">Отправить</button>
-        </form>
-      )}
-    </div>
+          Нет
+        </label>
+      </div>
+      <button type="submit">Отправить</button>
+    </form>
   );
 };
 
