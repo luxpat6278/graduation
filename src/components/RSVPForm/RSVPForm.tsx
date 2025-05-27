@@ -20,6 +20,7 @@ const RSVPForm: React.FC = () => {
       return;
     }
     try {
+      console.log('Отправка на URL:', `${API_URL}/rsvp`); 
       const res = await fetch(`${API_URL}/rsvp`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
